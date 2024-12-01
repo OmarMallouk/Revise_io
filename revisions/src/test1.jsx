@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState,useEffect } from "react";
 import axios from "axios";
+import { UserContext } from "./context1";
 
 const Test1 = () =>{
     const [counter,setCounter] = useState(0);
     const [formValues, setFormValues] = useState({ username: '', password: '' });
     const[items,setItems] = useState([]);
     const [perks,setPerks] = useState([]);
+    const {users} = useContext(UserContext);
 
 
 
