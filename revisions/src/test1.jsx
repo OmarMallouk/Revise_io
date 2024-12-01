@@ -1,10 +1,37 @@
 import React from "react";
 import { useState,useEffect } from "react";
+import {axios} from "axios";
 
 const Test1 = () =>{
     const [counter,setCounter] = useState(0);
     const [formValues, setFormValues] = useState({ name: '', age: '' });
     const[items,setItems] = useState([]);
+    const [perks,setPerks] = useState([]);
+
+
+
+
+
+    const fetchPerks = async() =>{
+        
+        try{
+
+       
+            const response = await  axios.get("/users/perks",{
+        headers:{
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        
+    },
+});
+            setPerks(response.data);
+        }catch(error){
+            console.error("Error fetching perks:", error);
+        }
+        
+        }
+    
+
 
     console.log("items",items);
 
@@ -63,7 +90,11 @@ const Test1 = () =>{
   
 </div>
 
-
+<div>
+    {perks.map((perk,index)=>{
+        <p key={perk.id}>{perk.name}</p>
+    })}
+</div>
 
 
 </div>
