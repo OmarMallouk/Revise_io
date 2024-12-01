@@ -1,10 +1,10 @@
 import React from "react";
 import { useState,useEffect } from "react";
-import {axios} from "axios";
+import axios from "axios";
 
 const Test1 = () =>{
     const [counter,setCounter] = useState(0);
-    const [formValues, setFormValues] = useState({ name: '', age: '' });
+    const [formValues, setFormValues] = useState({ username: '', password: '' });
     const[items,setItems] = useState([]);
     const [perks,setPerks] = useState([]);
 
@@ -30,6 +30,34 @@ const Test1 = () =>{
         }
         
         }
+
+        
+    const login = async() =>{
+        
+        try{
+
+       
+            const response = await  axios.post("/login",{
+                
+                    username: formValues.username,
+                    password: formValues.password,
+                },{
+        headers:{
+            "Content-Type": "application/json",
+            // "Authorization": `Bearer ${token}`
+        
+    },
+});
+            setFormValues(response.data);
+        }catch(error){
+            console.error("Error fetching perks:", error);
+        }
+        
+        }
+
+
+
+
     
 
 
@@ -47,9 +75,7 @@ const Test1 = () =>{
 
     
         event.preventDefault();
-        setItems(prevItems => [...prevItems, {name: formValues.name, age:formValues.age}]);
-        setFormValues({name: '', age: ''});
-        alert(JSON.stringify(items));
+       login();
     }
 
     return(
@@ -67,14 +93,14 @@ const Test1 = () =>{
  */}
 
 <form onSubmit={handleSubmit}>
-    <label htmlFor="">Enter your name
-    <input type="text" name="name" value={formValues.name} onChange={handleChange} />
+    <label htmlFor="">Enter your username
+    <input type="text" name="username" value={formValues.username} onChange={handleChange} />
     </label>
 
-    <label htmlFor="" >Enter your age
-        <input type="text" name="age" value={formValues.age} onChange={handleChange}/>
+    <label htmlFor="" >Enter your password
+        <input type="password" name="password" value={formValues.password} onChange={handleChange}/>
     </label>
-    <input type="submit"/>
+    <input type="submit" value={login}/>
 </form>
 
 
