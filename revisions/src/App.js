@@ -2,20 +2,24 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Test1 from './test1';
-import UserProvider from './context1';
+import Store from './store';
+import Navbar from './navbar';
+
 
 function App() {
   return (
-    <UserProvider>
+ 
     <div className="App">
     <BrowserRouter>
     <Routes>
-    <Route path="/" element={<Test1/>} />
+    {/* <Route path="/" element={<Navbar/>} /> */}
+    <Route path="/" element={<Store/>} />
+    {/* <Route path="/t" element={<Test1/>} /> */}
     </Routes>
     </BrowserRouter>
   
     </div>
-    </UserProvider>
+ 
   );
 }
 

@@ -1,9 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {Provider} from "react-redux";
-import store from './store/store';
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
 import App from './App';
+import carCountReducer from "./carCountSlic";
+
+
+const store = configureStore({
+  reducer:{
+    carCount: carCountReducer
+  }
+})
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

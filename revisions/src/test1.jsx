@@ -3,7 +3,7 @@ import { useState,useEffect } from "react";
 import axios from "axios";
 import { UserContext } from "./context1";
 import {useSelector, useDispatch} from "react-redux";
-import { addUsers } from "./action1";
+
 
 const Test1 = () =>{
     const [counter,setCounter] = useState(0);
